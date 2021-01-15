@@ -49,6 +49,7 @@ random2AFC();
 function send2AFC() {
 
 var answers = JSON.parse(window.sessionStorage.getItem("answers"));
+answers["timestamp"] = firebase.firestore.FieldValue.serverTimestamp();
 
 var firebaseConfig = {
     apiKey: "AIzaSyAIMq9ehYosprMsvcH4_duWZl6XJNEgXIc",
@@ -268,6 +269,7 @@ function changeRateImage(){
 function sendRate() {
     
         var selected = JSON.parse(window.sessionStorage.getItem("selected"));
+        selected["timestamp"] = firebase.firestore.FieldValue.serverTimestamp();
     
         var firebaseConfig = {
             apiKey: "AIzaSyAIMq9ehYosprMsvcH4_duWZl6XJNEgXIc",
@@ -476,6 +478,7 @@ function randomImageRank(){
 function sendRank(){
     
       var ranked = JSON.parse(window.sessionStorage.getItem("ranked"));
+      ranked["timestamp"] = firebase.firestore.FieldValue.serverTimestamp();
     
     
       var firebaseConfig = {
@@ -531,6 +534,7 @@ function submit(){
      postE["Experience"] = experience;
      postE["Comment"] = comment;
      postE["Occupation"] = occupation;
+     postE["Time"] = firebase.firestore.FieldValue.serverTimestamp();
      const db = firebase.firestore();
      db.collection("postExperiment").doc().set(postE)
          .then(function () {
